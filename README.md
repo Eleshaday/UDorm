@@ -1,2 +1,2 @@
 # Group39
-INSA summer camp group project
+INSA Summer Camp Group Project
