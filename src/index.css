@@ -1,0 +1,55 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+:root {
+  --logo-brown: #5C4033;
+  --gold-accent: #D4AF37;
+  --nav-bg: #f0e9d6;
+  --text-dark: #333;
+  --section-bg: #f9f6f0;
+  --primary-brown: #5C4033;
+  --input-border: #ddd;
+  --error-color: #e74c3c;
+  --weak: #ff4757;
+  --medium: #ffa502;
+  --strong: #2ed573;
+  --card-bg: #ffffff;
+  --filter-bg: #ffffff;
+  --price-color: #27ae60;
+  --message-bg: #f0f0f0;
+  --match-high: #2ecc71;
+  --match-medium: #f39c12;
+  --match-low: #e74c3c;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  color: var(--text-dark);
+  background: var(--section-bg);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--section-bg);
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--section-bg);
+}

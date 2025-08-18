@@ -1,0 +1,47 @@
+:root { --logo-brown:#5C4033; --gold-accent:#D4AF37; --nav-bg:#f0e9d6; --text-dark:#333; --section-bg:#f9f6f0; --card-bg:#ffffff; --price-color:#27ae60; }
+.propertyContainer { max-width: 1200px; margin: 0 auto; padding:2rem; }
+.propertyHeader { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2rem; }
+.propertyTitle { font-size:2rem; color:var(--logo-brown); font-family:'Playfair Display', serif; margin-bottom:0.5rem; }
+.propertyLocation { display:flex; align-items:center; gap:0.5rem; color:#666; margin-bottom:1rem; }
+.propertyPrice { font-size:1.8rem; font-weight:700; color:var(--price-color); }
+.pricePeriod { font-size:1rem; color:#666; font-weight:normal; }
+.propertyGallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:auto auto; gap:1rem; margin-bottom:2rem; height:500px; }
+.mainImage { grid-row: span 2; border-radius:10px; overflow:hidden; position:relative; }
+.mainImage img { width:100%; height:100%; object-fit:cover; }
+.secondaryImage { border-radius:10px; overflow:hidden; }
+.secondaryImage img { width:100%; height:100%; object-fit:cover; }
+.viewAllPhotos { display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.5); color:#fff; position:absolute; bottom:1rem; right:1rem; padding:0.5rem 1rem; border-radius:20px; font-weight:600; cursor:pointer; }
+.propertyDetails { display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin-bottom:3rem; }
+.sectionTitle { font-size:1.5rem; color:var(--logo-brown); font-family:'Playfair Display', serif; margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--gold-accent); }
+.propertyText { line-height:1.6; color:#555; margin-bottom:1.5rem; }
+.featuresGrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:1.5rem; margin-bottom:2rem; }
+.featureItem { display:flex; align-items:center; gap:0.8rem; }
+.featureIcon { width:40px; height:40px; background-color: rgba(212,175,55,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--gold-accent); font-size:1.2rem; }
+.featureText strong { color:var(--logo-brown); }
+.amenitiesList { columns:2; column-gap:2rem; margin-bottom:2rem; }
+.amenityItem { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem; break-inside: avoid; }
+.contactCard { background-color:var(--card-bg); border-radius:10px; padding:1.5rem; box-shadow:0 5px 15px rgba(0,0,0,0.05); position: sticky; top:100px; }
+.contactHeader { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+.contactAvatar { width:60px; height:60px; border-radius:50%; overflow:hidden; }
+.contactAvatar img { width:100%; height:100%; object-fit:cover; }
+.contactName { font-weight:700; color:var(--logo-brown); margin-bottom:0.2rem; }
+.contactRole { color:#666; font-size:0.9rem; }
+.propertyBadge { background-color: var(--gold-accent); color:var(--logo-brown); padding:0.5rem 1rem; border-radius:20px; font-weight:700; font-size:0.9rem; }
+.contactBtn { background-color: var(--gold-accent); color: var(--logo-brown); border:none; width:100%; padding:1rem; border-radius:5px; font-weight:700; cursor:pointer; margin-bottom:1rem; transition: background-color 0.3s ease; }
+.contactBtn:hover { background-color:#e0b236; }
+.contactBtn.secondary { background:transparent; border:2px solid var(--gold-accent); }
+.contactMethod { display:flex; align-items:center; gap:0.8rem; padding:0.8rem 0; border-bottom:1px solid #eee; }
+.listingsGrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap:2rem; margin-top:1.5rem; }
+.listingCard { background-color:var(--card-bg); border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+.listingCard:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.listingImage { height:200px; overflow:hidden; }
+.listingImage img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+.listingCard:hover .listingImage img { transform: scale(1.05); }
+.listingDetails { padding:1.5rem; }
+.listingPrice { font-size:1.3rem; font-weight:700; color:var(--price-color); margin-bottom:0.5rem; }
+.listingTitle { font-size:1.1rem; color:var(--logo-brown); margin-bottom:0.5rem; font-family:'Playfair Display', serif; }
+.listingLocation { display:flex; align-items:center; gap:0.5rem; color:#666; margin-bottom:1rem; font-size:0.9rem; }
+.listingFeatures { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; }
+.feature { display:flex; align-items:center; gap:0.3rem; font-size:0.9rem; color:#666; }
+@media (max-width:992px){ .propertyGallery{ grid-template-columns:1fr; height:auto; } .propertyDetails{ grid-template-columns:1fr; } .amenitiesList{ columns:1; } }
+

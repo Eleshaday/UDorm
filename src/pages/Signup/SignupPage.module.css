@@ -1,0 +1,27 @@
+:root { --logo-brown:#5C4033; --gold-accent:#D4AF37; --nav-bg:#f0e9d6; --text-dark:#333; --section-bg:#f9f6f0; --input-border:#ddd; --error-color:#e74c3c; --weak:#ff4757; --medium:#ffa502; --strong:#2ed573; }
+.pageWrapper { background-color: var(--section-bg); color: var(--text-dark); }
+.signupContainer { display:flex; justify-content:center; align-items:center; min-height: calc(100vh - 80px); padding:2rem; }
+.signupCard { background:#fff; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.1); padding:3rem; width:100%; max-width:500px; }
+.signupTitle { color:var(--logo-brown); font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:1.5rem; text-align:center; }
+.signupSubtitle { text-align:center; margin-bottom:2rem; color:#666; }
+.formGrid { display:grid; grid-template-columns:1fr; gap:1.5rem; }
+@media (min-width:600px){ .formGrid{ grid-template-columns:1fr 1fr; } .fullWidth{ grid-column: span 2; } }
+.inputGroup { margin-bottom:0.5rem; }
+.inputGroup label { display:block; margin-bottom:0.5rem; font-weight:600; color:var(--logo-brown); }
+.inputGroup input, .inputGroup select { width:100%; padding:0.8rem 1rem; border:1px solid var(--input-border); border-radius:5px; font-size:1rem; transition: all 0.3s ease; }
+.inputGroup input:focus, .inputGroup select:focus { outline:none; border-color:var(--gold-accent); box-shadow:0 0 0 2px rgba(212,175,55,0.2); }
+.passwordWrapper { position:relative; }
+.togglePassword { position:absolute; right:10px; top:50%; transform: translateY(-50%); background:none; border:none; color:var(--logo-brown); cursor:pointer; }
+.passwordStrength { height:4px; background:#eee; margin-top:0.5rem; border-radius:2px; overflow:hidden; position:relative; }
+.passwordStrength::before { content:''; position:absolute; left:0; top:0; height:100%; width:0%; transition: width 0.3s ease, background 0.3s ease; }
+.passwordStrength[data-strength="weak"]::before { width:30%; background:var(--weak); }
+.passwordStrength[data-strength="medium"]::before { width:60%; background:var(--medium); }
+.passwordStrength[data-strength="strong"]::before { width:100%; background:var(--strong); }
+.strengthText { font-size:0.8rem; margin-top:0.3rem; text-align:right; }
+.termsGroup { display:flex; align-items:flex-start; margin:1.5rem 0; gap:0.5rem; }
+.signupBtn { background-color:var(--gold-accent); color:var(--logo-brown); border:none; padding:1rem; width:100%; border-radius:5px; font-size:1rem; font-weight:700; cursor:pointer; transition: all 0.3s ease; }
+.signupBtn:hover { background-color:#e0b236; }
+.loginLink { text-align:center; margin-top:2rem; font-size:0.9rem; }
+.loginLink a { color:var(--logo-brown); font-weight:600; text-decoration:none; }
+@media (max-width:768px){ .signupCard{ padding:2rem; } .signupTitle{ font-size:1.8rem; } }
+

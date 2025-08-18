@@ -1,0 +1,37 @@
+:root { --logo-brown:#5C4033; --gold-accent:#D4AF37; --nav-bg:#f0e9d6; --text-dark:#333; --section-bg:#f9f6f0; --card-bg:#ffffff; }
+.profileContainer { max-width:1200px; margin:0 auto; padding:2rem; display:grid; grid-template-columns:1fr; gap:2rem; }
+@media (min-width: 992px){ .profileContainer{ grid-template-columns:1fr 2fr; } }
+.profileSidebar { background-color:var(--card-bg); border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:2rem; height:fit-content; position:sticky; top:100px; }
+.profileHeader { text-align:center; margin-bottom:1.5rem; }
+.profileImage { width:150px; height:150px; border-radius:50%; overflow:hidden; margin:0 auto 1rem; border:3px solid var(--gold-accent); }
+.profileImage img { width:100%; height:100%; object-fit:cover; }
+.profileName { font-size:1.5rem; color:var(--logo-brown); margin-bottom:0.5rem; font-family:'Playfair Display', serif; }
+.profileUniversity { color:var(--gold-accent); font-weight:600; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem; }
+.matchBadge { background-color:#2ecc71; color:#fff; padding:0.3rem 1rem; border-radius:20px; font-weight:700; font-size:0.9rem; display:inline-block; margin-bottom:1.5rem; }
+.profileActions { display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem; }
+.profileBtn { background-color: var(--gold-accent); color: var(--logo-brown); border:none; padding:0.8rem; border-radius:5px; font-weight:700; cursor:pointer; text-align:center; text-decoration:none; transition: background-color 0.3s ease; }
+.profileBtn:hover { background-color:#e0b236; }
+.secondary { background:transparent; border:2px solid var(--gold-accent); }
+.secondary:hover { background-color: rgba(212,175,55,0.1); }
+.profileDetailsList { margin-top:1.5rem; }
+.detailItem { display:flex; justify-content:space-between; padding:0.8rem 0; border-bottom:1px solid #eee; }
+.detailItem:last-child { border-bottom:none; }
+.detailLabel { font-weight:600; color:var(--logo-brown); }
+.detailValue { color:#666; text-align:right; }
+.profileContent { background-color:var(--card-bg); border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:2rem; }
+.sectionTitle { color:var(--logo-brown); font-family:'Playfair Display', serif; font-size:1.5rem; margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:2px solid var(--gold-accent); }
+.profileBio { line-height:1.6; margin-bottom:2rem; color:#555; }
+.profileTags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2rem; }
+.tag { background-color: rgba(212,175,55,0.1); color:var(--logo-brown); padding:0.4rem 1rem; border-radius:20px; font-size:0.9rem; font-weight:600; }
+.compatibilitySection { margin-bottom:2rem; }
+.compatibilityGrid { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:1.5rem; margin-top:1.5rem; }
+.compatibilityItem { background-color: var(--section-bg); border-radius:8px; padding:1rem; text-align:center; }
+.compatibilityCategory { font-weight:600; color:var(--logo-brown); margin-bottom:0.5rem; }
+.compatibilityMeter { height:8px; background:#eee; border-radius:4px; margin-bottom:0.5rem; overflow:hidden; }
+.compatibilityFill { height:100%; background-color:#2ecc71; width:100%; }
+.compatibilityPercent { font-size:0.9rem; color:#666; }
+.gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; margin-bottom:2rem; }
+.galleryItem { aspect-ratio:1; overflow:hidden; border-radius:8px; }
+.galleryItem img { width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease; }
+.galleryItem:hover img { transform: scale(1.05); }
+
