@@ -1,12 +1,68 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Group39
+INSA Summer Camp Group Project
 
-Currently, two official plugins are available:
+U Dorm ~  Student Housing and Roommate Finder System
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Overview
 
-## Expanding the ESLint configuration
+This project is a comprehensive rental and housing system designed specifically for students. The platform helps students find suitable accommodations near their campus and connect with potential roommates. The system includes features for listing available properties, searching for roommates based on compatibility, and managing rental applications.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Features
+
+*Housing Listings
+
+Browse available apartments, houses, and rooms near campus
+
+Filter by price range, distance from campus, amenities, and property type
+
+View detailed property information with photos and virtual tours
+
+Save favorite listings for later review
+
+*Roommate Finder
+
+Create a roommate profile with preferences and habits
+
+Compatibility matching algorithm based on lifestyle, study habits, and preferences
+
+Secure messaging system to connect with potential roommates
+
+Roommate agreement templates
+
+*User Management
+
+Student registration and verification (with .edu email)
+
+Landlord/property manager registration
+
+User dashboards with different views for students and landlords
+
+Review and rating system for both properties and roommates
+
+*Application System
+
+Online rental applications
+
+Document upload for verification
+
+Application status tracking
+
+Technologies Used
+
+Frontend
+
+React.js
+
+CSS for styling
+
+Google Maps API for location services
+
+
+Backend
+
+Node.js with Express
+
+MongoDB for database
+
+
