@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import Listing from '../models/Listing.js'
-import { requireAuth } from '../middleware/auth.js'
+import { requireAuth, requireRole } from '../middleware/auth.js'
 
 const router = Router()
 
@@ -43,12 +43,22 @@ router.get('/:id', async (req, res) => {
 })
 
 // POST /api/listings (protected)
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireRole('landlord', 'admin'), async (req, res) => {
   try {
     const listing = await Listing.create({ ...req.body, owner: req.userId })
     res.status(201).json(listing)
   } catch (err) {
     res.status(400).json({ error: 'Invalid listing data' })
+  }
+})
+
+// GET /api/listings/mine (landlord)
+router.get('/mine/owner', requireRole('landlord', 'admin'), async (req, res) => {
+  try {
+    const listings = await Listing.find({ owner: req.userId }).sort({ createdAt: -1 }).lean()
+    res.json(listings)
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' })
   }
 })
 

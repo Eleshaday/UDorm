@@ -68,7 +68,15 @@ export function AuthProvider({ children }) {
     updateProfile({ favorites: updatedFavorites })
   }
 
-  const value = { currentUser, signup, login, logout, updateProfile, toggleFavorite, loading }
+  async function fetchFavorites() {
+    const token = localStorage.getItem('token')
+    if (!token) return []
+    const r = await fetch('/api/favorites', { headers: { Authorization: `Bearer ${token}` } })
+    if (!r.ok) return []
+    return await r.json()
+  }
+
+  const value = { currentUser, signup, login, logout, updateProfile, toggleFavorite, fetchFavorites, loading }
 
   return (
     <AuthContext.Provider value={value}>

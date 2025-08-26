@@ -31,6 +31,12 @@ export default function Navbar() {
           <NavLink to="/" end className={({ isActive }) => isActive ? `${styles.active}` : ''}>Home</NavLink>
           <NavLink to="/listings" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Listings</NavLink>
           <NavLink to="/roommates" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Roommates</NavLink>
+          {currentUser && (
+            <NavLink to="/dashboard" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Dashboard</NavLink>
+          )}
+          {currentUser && currentUser.role === 'landlord' && (
+            <NavLink to="/admin" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Admin</NavLink>
+          )}
         </div>
 
         <div className={styles.navEdgeLinks}>
@@ -49,6 +55,12 @@ export default function Navbar() {
                 <div className={styles.userDropdown}>
                   <NavLink to="/profile" onClick={() => setUserMenuOpen(false)}>
                     <i className="fas fa-user"></i> Profile
+                  </NavLink>
+                  <NavLink to="/messages/inbox" onClick={() => setUserMenuOpen(false)}>
+                    <i className="fas fa-inbox"></i> Inbox
+                  </NavLink>
+                  <NavLink to="/messages/sent" onClick={() => setUserMenuOpen(false)}>
+                    <i className="fas fa-paper-plane"></i> Sent
                   </NavLink>
                   <NavLink to="/list-property" onClick={() => setUserMenuOpen(false)}>
                     <i className="fas fa-plus"></i> List Property
@@ -79,7 +91,9 @@ export default function Navbar() {
             
             {currentUser ? (
               <>
+                <NavLink to="/dashboard" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Dashboard</NavLink>
                 <NavLink to="/profile" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Profile</NavLink>
+                <NavLink to="/messages/inbox" className={({ isActive }) => isActive ? `${styles.active}` : ''}>Messages</NavLink>
                 <NavLink to="/list-property" className={({ isActive }) => isActive ? `${styles.active}` : ''}>List Property</NavLink>
                 <button onClick={handleLogout} className={styles.logoutBtn}>
                   <i className="fas fa-sign-out-alt"></i> Logout

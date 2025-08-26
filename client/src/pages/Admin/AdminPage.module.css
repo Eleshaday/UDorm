@@ -1,0 +1,9 @@
+.container { padding: 2rem; }
+.title { font-size: 1.75rem; margin-bottom: 1rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.card { background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 1rem; }
+.cardLabel { color: #666; font-size: 0.9rem; }
+.cardValue { font-size: 2rem; font-weight: 700; }
+
+
+

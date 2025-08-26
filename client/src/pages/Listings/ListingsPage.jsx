@@ -69,6 +69,25 @@ export default function ListingsPage() {
     setListings(prev => prev.map(listing => 
       listing.id === id ? { ...listing, favorited: !listing.favorited } : listing
     ))
+    ;(async () => {
+      const token = localStorage.getItem('token')
+      if (!token) return
+      const listing = listings.find(l => l.id === id)
+      try {
+        if (!listing?.favorited) {
+          await fetch('/api/favorites', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ listing: id })
+          })
+        } else {
+          await fetch(`/api/favorites/${id}`, {
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${token}` },
+          })
+        }
+      } catch {}
+    })()
   }
 
   const toggleAmenity = (amenity) => {

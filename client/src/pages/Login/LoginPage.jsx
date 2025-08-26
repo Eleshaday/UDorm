@@ -33,7 +33,7 @@ export default function LoginPage() {
       const result = await login(formData.email, formData.password)
       
       if (result.success) {
-        navigate('/profile') // Redirect to profile after successful login
+        navigate('/dashboard') // Redirect to dashboard after successful login
       } else {
         setError(result.error)
       }

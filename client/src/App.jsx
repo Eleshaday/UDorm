@@ -10,6 +10,11 @@ import ListingDetailPage from './pages/ListingDetail/ListingDetailPage'
 import RoommatesPage from './pages/Roommates/RoommatesPage'
 import ProfilePage from './pages/Profile/ProfilePage'
 import ListPropertyPage from './pages/ListProperty/ListPropertyPage'
+import LandlordDashboard from './pages/Dashboard/LandlordDashboard'
+import AdminPage from './pages/Admin/AdminPage'
+import Dashboard from './pages/Dashboard/Dashboard'
+import Inbox from './pages/Messages/Inbox'
+import Sent from './pages/Messages/Sent'
 
 import './App.css'
 import ExpensiveComponent from './components/try'
@@ -28,6 +33,10 @@ function App() {
           <Route path="/roommates" element={<RoommatesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/list-property" element={<ListPropertyPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/messages/inbox" element={<Inbox />} />
+          <Route path="/messages/sent" element={<Sent />} />
           <Route path="/try" element={<ExpensiveComponent />} ></Route>
         </Routes>
         <Footer />

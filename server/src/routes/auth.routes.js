@@ -7,17 +7,19 @@ const router = Router()
 
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password } = req.body
+    const { name, email, password, role } = req.body
     if (!name || !email || !password) return res.status(400).json({ error: 'Missing fields' })
     const exists = await User.findOne({ email })
     if (exists) return res.status(409).json({ error: 'Email already in use' })
     const passwordHash = await bcrypt.hash(password, 10)
-    const user = await User.create({ name, email, passwordHash })
-    const token = jwt.sign({ sub: user._id }, process.env.JWT_SECRET || 'dev_secret', { expiresIn: '7d' })
+    const roleValue = ['tenant', 'landlord', 'admin'].includes(role) ? role : 'tenant'
+    const user = await User.create({ name, email, passwordHash, role: roleValue })
+    const token = jwt.sign({ sub: user._id, role: user.role }, process.env.JWT_SECRET || 'dev_secret', { expiresIn: '7d' })
     const safeUser = {
       id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
       avatar: user.avatar,
     }
     res.status(201).json({ token, user: safeUser })
@@ -33,11 +35,12 @@ router.post('/login', async (req, res) => {
     if (!user) return res.status(401).json({ error: 'Invalid credentials' })
     const valid = await bcrypt.compare(password, user.passwordHash)
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' })
-    const token = jwt.sign({ sub: user._id }, process.env.JWT_SECRET || 'dev_secret', { expiresIn: '7d' })
+    const token = jwt.sign({ sub: user._id, role: user.role }, process.env.JWT_SECRET || 'dev_secret', { expiresIn: '7d' })
     const safeUser = {
       id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
       avatar: user.avatar,
     }
     res.json({ token, user: safeUser })

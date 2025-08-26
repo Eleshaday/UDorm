@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './ListingDetailPage.module.css'
+import { useAuth } from '../../hooks/useAuth'
 
 export default function ListingDetailPage() {
   const { id } = useParams()
   const [listing, setListing] = useState(null)
+  const [reviews, setReviews] = useState([])
+  const [reviewText, setReviewText] = useState('')
+  const [reviewRating, setReviewRating] = useState(5)
+  const [messageText, setMessageText] = useState('')
+  const [dates, setDates] = useState({ start: '', end: '' })
+  const { currentUser } = useAuth()
 
   useEffect(() => {
     async function load() {
@@ -15,6 +22,51 @@ export default function ListingDetailPage() {
     }
     load()
   }, [id])
+
+  useEffect(() => {
+    async function loadReviews() {
+      const r = await fetch(`/api/reviews/${id}`)
+      const d = await r.json()
+      setReviews(d)
+    }
+    loadReviews()
+  }, [id])
+
+  async function sendMessage() {
+    if (!currentUser) { alert('Login required'); return }
+    const token = localStorage.getItem('token')
+    if (!token) return
+    // fallback: send to listing owner if available
+    const res = await fetch('/api/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ to: listing.owner, listing: listing._id, body: messageText })
+    })
+    if (res.ok) { setMessageText(''); alert('Message sent') } else { alert('Failed') }
+  }
+
+  async function createBooking() {
+    if (!currentUser) { alert('Login required'); return }
+    const token = localStorage.getItem('token')
+    if (!token) return
+    const res = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ listing: listing._id, startDate: dates.start, endDate: dates.end, message: messageText })
+    })
+    if (res.ok) { alert('Inquiry sent') } else { alert('Failed') }
+  }
+
+  async function addReview() {
+    if (!currentUser) { alert('Login required'); return }
+    const token = localStorage.getItem('token')
+    const res = await fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ listing: listing._id, rating: Number(reviewRating), comment: reviewText })
+    })
+    if (res.ok) { setReviewText(''); const d = await res.json(); setReviews([d, ...reviews]) } else { alert('Failed') }
+  }
 
   if (!listing) return null
 
@@ -65,6 +117,24 @@ export default function ListingDetailPage() {
               ))}
             </div>
           </div>
+
+          <div className={styles.propertyDescription}>
+            <h2 className={styles.sectionTitle}>Reviews</h2>
+            <div>
+              {reviews.map(r => (
+                <div key={r._id} className={styles.propertyText}>⭐ {r.rating} — {r.comment}</div>
+              ))}
+            </div>
+            {currentUser && (
+              <div style={{ marginTop: '1rem' }}>
+                <select value={reviewRating} onChange={(e) => setReviewRating(e.target.value)}>
+                  {[5,4,3,2,1].map(n => <option key={n} value={n}>{n}</option>)}
+                </select>
+                <input value={reviewText} onChange={(e) => setReviewText(e.target.value)} placeholder="Write a review" style={{ marginLeft: '0.5rem' }} />
+                <button onClick={addReview} className={styles.contactBtn} style={{ marginLeft: '0.5rem' }}>Post</button>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.propertyRight}>
@@ -77,12 +147,20 @@ export default function ListingDetailPage() {
                 <div className={styles.propertyBadge}>Verified</div>
               </div>
             </div>
-            <button className={styles.contactBtn}><i className="fas fa-envelope"></i> Contact Now</button>
+            <button className={styles.contactBtn} onClick={sendMessage}><i className="fas fa-envelope"></i> Contact Now</button>
             <div className={styles.contactMethod}><i className="fas fa-phone"></i><span>(555) 123-4567</span></div>
             <div className={styles.contactMethod}><i className="fas fa-envelope"></i><span>john@universityheights.com</span></div>
             <div className={styles.contactMethod}><i className="fas fa-clock"></i><span>Available 9am-5pm, Mon-Fri</span></div>
             <div style={{ marginTop: '1.5rem' }}>
               <button className={`${styles.contactBtn} ${styles.secondary}`}><i className="fas fa-heart"></i> Save Listing</button>
+            </div>
+            <div style={{ marginTop: '1.5rem' }}>
+              <input type="date" value={dates.start} onChange={(e) => setDates({ ...dates, start: e.target.value })} />
+              <input type="date" value={dates.end} onChange={(e) => setDates({ ...dates, end: e.target.value })} style={{ marginLeft: '0.5rem' }} />
+              <button className={styles.contactBtn} onClick={createBooking} style={{ marginLeft: '0.5rem' }}>Send Inquiry</button>
+            </div>
+            <div style={{ marginTop: '0.75rem' }}>
+              <input value={messageText} onChange={(e) => setMessageText(e.target.value)} placeholder="Message to landlord" />
             </div>
           </div>
         </div>

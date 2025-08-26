@@ -1,10 +1,14 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 import styles from './SignupPage.module.css'
 
 export default function SignupPage() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', userType: '', terms: false })
   const [showPw, setShowPw] = useState(false)
   const [showPw2, setShowPw2] = useState(false)
+  const navigate = useNavigate()
+  const { signup } = useAuth()
 
   const strength = useMemo(() => {
     const value = form.password
@@ -15,13 +19,23 @@ export default function SignupPage() {
 
   function updateField(key, value) { setForm(prev => ({ ...prev, [key]: value })) }
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault()
     if (!form.terms) { alert('Please agree to the Terms of Service and Privacy Policy'); return }
     if (form.password !== form.confirmPassword) { alert("Passwords don't match"); return }
     if (form.password.length < 8) { alert('Password must be at least 8 characters'); return }
-    alert('Account created successfully! Redirecting...')
-    console.log('Form submission:', form)
+    const res = await signup({
+      name: `${form.firstName} ${form.lastName}`.trim(),
+      email: form.email,
+      password: form.password,
+      role: form.userType
+    })
+    if (res.success) {
+      if (form.userType === 'landlord') navigate('/list-property')
+      else navigate('/dashboard')
+    } else {
+      alert(res.error || 'Signup failed')
+    }
   }
 
   return (
@@ -66,7 +80,7 @@ export default function SignupPage() {
                 <label htmlFor="userType">I am a...</label>
                 <select id="userType" value={form.userType} onChange={(e) => updateField('userType', e.target.value)} required>
                   <option value="" disabled>Select your role</option>
-                  <option value="student">Student looking for housing</option>
+                  <option value="tenant">Student looking for housing</option>
                   <option value="landlord">Property owner/manager</option>
                 </select>
               </div>

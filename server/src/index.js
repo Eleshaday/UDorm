@@ -7,6 +7,11 @@ import cookieParser from 'cookie-parser'
 import { connectToDatabase } from './config/db.js'
 import authRoutes from './routes/auth.routes.js'
 import listingRoutes from './routes/listing.routes.js'
+import adminRoutes from './routes/admin.routes.js'
+import bookingRoutes from './routes/booking.routes.js'
+import reviewRoutes from './routes/review.routes.js'
+import messageRoutes from './routes/message.routes.js'
+import favoriteRoutes from './routes/favorite.routes.js'
 
 const app = express()
 
@@ -22,6 +27,11 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/auth', authRoutes)
 app.use('/api/listings', listingRoutes)
+app.use('/api/admin', adminRoutes)
+app.use('/api/bookings', bookingRoutes)
+app.use('/api/reviews', reviewRoutes)
+app.use('/api/messages', messageRoutes)
+app.use('/api/favorites', favoriteRoutes)
 
 const port = process.env.PORT || 5000
 
