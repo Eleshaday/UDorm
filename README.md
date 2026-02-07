@@ -1,3 +1,6 @@
+
+# Group39
+INSA Summer Camp Group Project
 # U Dorm ~  Student Housing and Roommate Finder System
 
 
@@ -63,4 +66,5 @@ Backend
 Node.js with Express
 
 MongoDB for database
+
 
